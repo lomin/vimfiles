@@ -1,14 +1,14 @@
 " Thx to
 " https://github.com/sanitz
 " https://github.com/gmarik
+" https://github.com/bostonaholic
 
 set nocompatible
 
-filetype on
-filetype plugin on
-filetype plugin indent on
+filetype off
 
 let mapleader = ','
+let maplocalleader = '\'
 
 set enc=utf-8
 
@@ -25,11 +25,11 @@ set history=1000
 set mouse=a
 
 set number
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 set expandtab
-set softtabstop=4
+set softtabstop=2
 set autoindent
 
 set scrolloff=3 " Mindestens drei Zeilen noch anzeigen beim Scrollen
@@ -64,7 +64,6 @@ set listchars=tab:▸\ ,eol:¬
 nnoremap <silent> <leader>v :vsplit<CR><C-W>l
 
 let python_highlight_all = 1
-colorscheme lomin
 autocmd FileType python map <F5> :w<CR>:!python2.6 "%"<CR>
 
 set rtp+=~/.vim/bundle/vundle/
@@ -85,6 +84,8 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader>m'
 map <leader>w <Leader>mw
+map <leader>e <Leader>me
+map <leader>b <Leader>mb
 
 " NERDTree
 Bundle 'scrooloose/nerdtree'
@@ -93,7 +94,6 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o
 
 Bundle 'pyflakes.vim'
 Bundle 'SuperTab'
-Bundle 'taglist.vim'
 
 Bundle 'pep8'
 let g:pep8_map='<leader>p'
@@ -104,10 +104,54 @@ autocmd FileType python set ft=python.django
 autocmd FileType html set ft=htmldjango.html
 
 " Ack
-Bundle "ack.vim"
+Bundle 'mileszs/ack.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 nnoremap <leader>a :Ack
 
 " apt-get install exuberant-ctags
 Bundle 'majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
+
+"Bundle 'git:VimClojure'
+Bundle "https://github.com/vim-scripts/VimClojure.git"
+let vimclojure#HighlightBuiltins=1
+let vimclojure#ParenRainbow=1
+au BufNewFile,BufRead *.clj set filetype=clojure
+
+" Um schnell die vimrc zu editieren
+nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
+
+Bundle "git://github.com/tomtom/tcomment_vim.git"
+
+" ZoomWin to fullscreen a particular buffer without losing others
+Bundle "git://github.com/vim-scripts/ZoomWin.git"
+  map <Leader>z :ZoomWin<CR>
+
+Bundle "git://github.com/tpope/vim-rails.git"
+  map <Leader>rc :Rcontroller<Space>
+  map <Leader>rv :Rview<Space>
+  map <Leader>rm :Rmodel<Space>
+  map <Leader>rh :Rhelper<Space>
+  map <Leader>rj :Rjavascript<Space>
+  map <Leader>rs :Rstylesheet<Space>
+  map <Leader>ri :Rintegration<Space>
+
+Bundle "git://github.com/tpope/vim-rake.git"
+
+Bundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
+syntax enable
+set background=light
+colorscheme sienna
+filetype plugin on
+filetype plugin indent on
+
+command! -complete=file -nargs=1 RM :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
+
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc>
