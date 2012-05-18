@@ -62,6 +62,7 @@ nnoremap <leader>s :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 nnoremap <silent> <leader>v :vsplit<CR><C-W>l
+nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 
 let python_highlight_all = 1
 autocmd FileType python map <F5> :w<CR>:!python2.6 "%"<CR>
@@ -89,6 +90,7 @@ map <leader>b <Leader>mb
 
 " NERDTree
 Bundle 'scrooloose/nerdtree'
+nnoremap <leader>T :NERDTree<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
@@ -112,11 +114,18 @@ nnoremap <leader>a :Ack
 Bundle 'majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
-"Bundle 'git:VimClojure'
 Bundle "https://github.com/vim-scripts/VimClojure.git"
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
 au BufNewFile,BufRead *.clj set filetype=clojure
+au BufNewFile,BufRead *.cljs set filetype=clojure
+
+" Map Clojure to Lisp for ctags"
+let g:tagbar_type_clojure = {
+             \ 'ctagstype' : 'Lisp',
+             \ 'kinds'     : [
+                \ 'f:functions:0:0',
+            \ ]}
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
@@ -139,6 +148,12 @@ Bundle "git://github.com/tpope/vim-rails.git"
 Bundle "git://github.com/tpope/vim-rake.git"
 
 Bundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
+
+Bundle "git://github.com/kchmck/vim-coffee-script.git"
+  au BufNewFile,BufRead *.coffee set filetype=coffee
+
+Bundle "git://github.com/kien/ctrlp.vim.git"
+
 syntax enable
 set background=light
 colorscheme sienna
@@ -147,11 +162,11 @@ filetype plugin indent on
 
 command! -complete=file -nargs=1 RM :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
 noremap  <Left> ""
 noremap! <Left> <Esc>
 noremap  <Right> ""
 noremap! <Right> <Esc>
+
+map <leader><Tab> =i(=i[
+map <leader>( =i( 
+map <leader>[ =i[ 
