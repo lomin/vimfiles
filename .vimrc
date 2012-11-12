@@ -48,24 +48,27 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " einfaches Wechseln der Buffer
-nmap <silent> <F6> :bn<CR>
-nmap <silent> <F7> :bp<CR>
+nmap <silent> <F5> <C-o>
+nmap <silent> <F6> <C-i>
+nmap <silent> <F7> :bn<CR>
+nmap <silent> <F8> :bp<CR>
 
-" F8 macht tabs zu whitespaces, entfernt unnütze ws am Ende der Zeile
-nnoremap <silent> <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
+" F9 macht tabs zu whitespaces, entfernt unnütze ws am Ende der Zeile
+nnoremap <silent> <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
 
 " mit w!! kann man auch als root Dateien speichern
 cmap w!! w !sudo tee % >/dev/null
 
-" Um Leerzeichen usw. anzuzeigen, kann man umschalten mit leader+s
-nnoremap <leader>s :set list!<CR>
+" Um Leerzeichen usw. anzuzeigen
+nnoremap <leader>f :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 nnoremap <silent> <leader>v :vsplit<CR><C-W>l
+nnoremap <silent> <leader>s :split<CR><C-W>j
 nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 
 let python_highlight_all = 1
-autocmd FileType python map <F5> :w<CR>:!python2.6 "%"<CR>
+autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -83,10 +86,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader>m'
-map <leader>w <Leader>mw
-map <leader>e <Leader>me
-map <leader>b <Leader>mb
+let g:EasyMotion_leader_key = '<leader>m'
+map <leader>w <leader>mw
+map <leader>e <leader>me
+map <leader>b <leader>mb
 
 " NERDTree
 Bundle 'scrooloose/nerdtree'
@@ -95,6 +98,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
 Bundle 'pyflakes.vim'
+let g:pyflakes_use_quickfix = 0
 Bundle 'SuperTab'
 
 Bundle 'pep8'
@@ -107,8 +111,8 @@ autocmd FileType html set ft=htmldjango.html
 
 " Ack
 Bundle 'mileszs/ack.vim'
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-nnoremap <leader>a :Ack
+let g:ackprg="ack -H --nocolor --nogroup --column"
+nnoremap <leader>a :Ack! 
 
 " apt-get install exuberant-ctags
 Bundle 'majutsushi/tagbar'
@@ -134,39 +138,55 @@ Bundle "git://github.com/tomtom/tcomment_vim.git"
 
 " ZoomWin to fullscreen a particular buffer without losing others
 Bundle "git://github.com/vim-scripts/ZoomWin.git"
-  map <Leader>z :ZoomWin<CR>
+  map <leader>z :ZoomWin<CR>
 
 Bundle "git://github.com/tpope/vim-rails.git"
-  map <Leader>rc :Rcontroller<Space>
-  map <Leader>rv :Rview<Space>
-  map <Leader>rm :Rmodel<Space>
-  map <Leader>rh :Rhelper<Space>
-  map <Leader>rj :Rjavascript<Space>
-  map <Leader>rs :Rstylesheet<Space>
-  map <Leader>ri :Rintegration<Space>
+  map <leader>rc :Rcontroller<Space>
+  map <leader>rv :Rview<Space>
+  map <leader>rm :Rmodel<Space>
+  map <leader>rh :Rhelper<Space>
+  map <leader>rj :Rjavascript<Space>
+  map <leader>rs :Rstylesheet<Space>
+  map <leader>ri :Rintegration<Space>
 
 Bundle "git://github.com/tpope/vim-rake.git"
 
 Bundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
+Bundle "git://github.com/altercation/vim-colors-solarized.git"
 
 Bundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
 
 Bundle "git://github.com/kien/ctrlp.vim.git"
 
-syntax enable
+syntax on
+
 set background=light
-colorscheme sienna
+let g:solarized_termtrans = 1
+colorscheme solarized
+
 filetype plugin on
 filetype plugin indent on
 
 command! -complete=file -nargs=1 RM :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
 noremap  <Left> ""
-noremap! <Left> <Esc>
 noremap  <Right> ""
-noremap! <Right> <Esc>
+nnoremap <Left> <C-B>
+nnoremap <Right> <C-F>
 
 map <leader><Tab> =i(=i[
 map <leader>( =i( 
 map <leader>[ =i[ 
+
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+noremap <leader>= <c-w>=
+
+inoremap jk <ESC>
+
+set clipboard=unnamed
+set ruler
