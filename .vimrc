@@ -190,3 +190,5 @@ inoremap jk <ESC>
 
 set clipboard=unnamed
 set ruler
+
+au Filetype python setl et ts=4 sw=4
