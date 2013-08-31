@@ -2,13 +2,52 @@
 " https://github.com/sanitz
 " https://github.com/gmarik
 " https://github.com/bostonaholic
+" https://github.com/Shougo
 
 set nocompatible
 
-filetype off
-
 let mapleader = ','
 let maplocalleader = '\'
+
+if has('vim_starting')
+ set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+if executable('ag')
+	  " Use ag in unite grep source.
+	  let g:unite_source_grep_command = 'ag'
+	  let g:unite_source_grep_default_opts =
+	  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+	  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+	  let g:unite_source_grep_recursive_opt = ''
+	elseif executable('ack-grep')
+	  " Use ack in unite grep source.
+	  let g:unite_source_grep_command = 'ack-grep'
+	  let g:unite_source_grep_default_opts =
+	  \ '--no-heading --no-color -a -H'
+	  let g:unite_source_grep_recursive_opt = ''
+	endif
+let g:vimfiler_as_default_explorer = 1
+nnoremap <leader>t :VimFiler<CR>
+nnoremap <leader>a :Unite grep:.<CR>
+nnoremap <C-p> :Unite file_rec/async<CR>
+nnoremap <leader>ls :Unite -quick-match buffer<CR>
+
+filetype off
 
 set enc=utf-8
 
@@ -70,55 +109,26 @@ nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 let python_highlight_all = 1
 autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-Bundle 'gmarik/vundle'
-
-Bundle 'Lokaltog/vim-easymotion'
+NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<leader>m'
 map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-" NERDTree
-Bundle 'scrooloose/nerdtree'
-nnoremap <leader>T :NERDTree<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-
-Bundle 'pyflakes.vim'
+NeoBundle 'pyflakes.vim'
 let g:pyflakes_use_quickfix = 0
-Bundle 'SuperTab'
-
-Bundle 'pep8'
-let g:pep8_map='<leader>p'
+NeoBundle 'SuperTab'
 
 " Snipmate
 " http://www.vim.org/scripts/script.php?script_id=2540
 autocmd FileType python set ft=python.django
 autocmd FileType html set ft=htmldjango.html
 
-" Ack
-Bundle 'mileszs/ack.vim'
-let g:ackprg="ack -H --nocolor --nogroup --column"
-nnoremap <leader>a :Ack! 
-
 " apt-get install exuberant-ctags
-Bundle 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
-Bundle "https://github.com/vim-scripts/VimClojure.git"
+NeoBundle "https://github.com/vim-scripts/VimClojure.git"
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
 au BufNewFile,BufRead *.clj set filetype=clojure
@@ -134,13 +144,13 @@ let g:tagbar_type_clojure = {
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
 
-Bundle "git://github.com/tomtom/tcomment_vim.git"
+NeoBundle "git://github.com/tomtom/tcomment_vim.git"
 
 " ZoomWin to fullscreen a particular buffer without losing others
-Bundle "git://github.com/vim-scripts/ZoomWin.git"
+NeoBundle "git://github.com/vim-scripts/ZoomWin.git"
   map <leader>z :ZoomWin<CR>
 
-Bundle "git://github.com/tpope/vim-rails.git"
+NeoBundle "git://github.com/tpope/vim-rails.git"
   map <leader>rc :Rcontroller<Space>
   map <leader>rv :Rview<Space>
   map <leader>rm :Rmodel<Space>
@@ -149,15 +159,13 @@ Bundle "git://github.com/tpope/vim-rails.git"
   map <leader>rs :Rstylesheet<Space>
   map <leader>ri :Rintegration<Space>
 
-Bundle "git://github.com/tpope/vim-rake.git"
+NeoBundle "git://github.com/tpope/vim-rake.git"
 
-Bundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
-Bundle "git://github.com/altercation/vim-colors-solarized.git"
+NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
+NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
 
-Bundle "git://github.com/kchmck/vim-coffee-script.git"
+NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
-
-Bundle "git://github.com/kien/ctrlp.vim.git"
 
 syntax on
 
@@ -192,3 +200,7 @@ set clipboard=unnamed
 set ruler
 
 au Filetype python setl et ts=4 sw=4
+
+nnoremap <leader>cd :lcd %:p:h<CR>
+
+NeoBundleCheck
