@@ -42,9 +42,10 @@ if executable('ag')
 	  let g:unite_source_grep_recursive_opt = ''
 	endif
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_ignore_pattern = '\%(.pyc\)$\|^\%(.git\|.DS_Store\)$'
 nnoremap <leader>t :VimFiler<CR>
 nnoremap <leader>a :Unite grep:.<CR>
-nnoremap <C-p> :Unite file_rec/async<CR>
+nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
 nnoremap <leader>ls :Unite -quick-match buffer<CR>
 
 filetype off
@@ -163,7 +164,9 @@ NeoBundle "git://github.com/tpope/vim-rake.git"
 
 NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
 NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
-
+NeoBundle "vim-scripts/bufkill.vim"
+NeoBundle "rizzatti/funcoo.vim"
+NeoBundle "rizzatti/dash.vim"
 NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
 
@@ -202,5 +205,5 @@ set ruler
 au Filetype python setl et ts=4 sw=4
 
 nnoremap <leader>cd :lcd %:p:h<CR>
-
+noremap <silent> <Leader>sa :Unite grep:$buffers::<C-r><C-w><CR>
 NeoBundleCheck
