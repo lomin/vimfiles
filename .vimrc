@@ -116,7 +116,7 @@ map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-NeoBundle 'git://github.com/pyflakes/pyflakes.vim'
+NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
 let g:pyflakes_use_quickfix = 0
 NeoBundle 'git://github.com/ervandew/supertab.git'
 
