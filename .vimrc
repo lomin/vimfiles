@@ -16,8 +16,8 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
+NeoBundleFetch 'git://github.com/Shougo/neobundle.vim'
+NeoBundle 'git://github.com/Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
       \     'cygwin' : 'make -f make_cygwin.mak',
@@ -25,8 +25,8 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'git://github.com/Shougo/unite.vim'
+NeoBundle 'git://github.com/Shougo/vimfiler.vim'
 if executable('ag')
 	  " Use ag in unite grep source.
 	  let g:unite_source_grep_command = 'ag'
@@ -110,15 +110,15 @@ nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 let python_highlight_all = 1
 autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
 
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'git://github.com/Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<leader>m'
 map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-NeoBundle 'pyflakes.vim'
+NeoBundle 'git://github.com/pyflakes.vim'
 let g:pyflakes_use_quickfix = 0
-NeoBundle 'SuperTab'
+NeoBundle 'git://github.com/SuperTab'
 
 " Snipmate
 " http://www.vim.org/scripts/script.php?script_id=2540
@@ -126,10 +126,10 @@ autocmd FileType python set ft=python.django
 autocmd FileType html set ft=htmldjango.html
 
 " apt-get install exuberant-ctags
-NeoBundle 'majutsushi/tagbar'
+NeoBundle 'git://github.com/majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
-NeoBundle "https://github.com/vim-scripts/VimClojure.git"
+NeoBundle "git://github.com/vim-scripts/VimClojure.git"
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
 au BufNewFile,BufRead *.clj set filetype=clojure
@@ -164,9 +164,9 @@ NeoBundle "git://github.com/tpope/vim-rake.git"
 
 NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
 NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
-NeoBundle "vim-scripts/bufkill.vim"
-NeoBundle "rizzatti/funcoo.vim"
-NeoBundle "rizzatti/dash.vim"
+NeoBundle "git://github.com/vim-scripts/bufkill.vim"
+NeoBundle "git://github.com/rizzatti/funcoo.vim"
+NeoBundle "git://github.com/rizzatti/dash.vim"
 NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
 
