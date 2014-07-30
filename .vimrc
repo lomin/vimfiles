@@ -116,9 +116,9 @@ map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-NeoBundle 'git://github.com/pyflakes.vim'
+NeoBundle 'git://github.com/pyflakes/pyflakes.vim'
 let g:pyflakes_use_quickfix = 0
-NeoBundle 'git://github.com/SuperTab'
+NeoBundle 'git://github.com/ervandew/supertab.git'
 
 " Snipmate
 " http://www.vim.org/scripts/script.php?script_id=2540
