@@ -116,8 +116,6 @@ map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
-let g:pyflakes_use_quickfix = 0
 NeoBundle 'git://github.com/ervandew/supertab.git'
 
 " Snipmate
@@ -134,6 +132,7 @@ let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
 au BufNewFile,BufRead *.clj set filetype=clojure
 au BufNewFile,BufRead *.cljs set filetype=clojure
+au BufNewFile,BufRead *.hy set filetype=clojure
 
 " Map Clojure to Lisp for ctags"
 let g:tagbar_type_clojure = {
