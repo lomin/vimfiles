@@ -9,11 +9,15 @@ set nocompatible
 let mapleader = ','
 let maplocalleader = '\'
 
+
 if has('vim_starting')
+ set nocompatible               " Be iMproved
+
+ " Required:
  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'git://github.com/Shougo/neobundle.vim'
@@ -168,6 +172,8 @@ NeoBundle "git://github.com/rizzatti/funcoo.vim"
 NeoBundle "git://github.com/rizzatti/dash.vim"
 NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
+
+call neobundle#end()
 
 syntax on
 
