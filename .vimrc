@@ -171,6 +171,7 @@ NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
 NeoBundle "git://github.com/vim-scripts/bufkill.vim"
 NeoBundle "git://github.com/rizzatti/funcoo.vim"
 NeoBundle "git://github.com/rizzatti/dash.vim"
+NeoBundle "git://github.com/wting/rust.vim.git"
 NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
 
