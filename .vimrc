@@ -214,3 +214,6 @@ au Filetype python setl et ts=4 sw=4
 nnoremap <leader>cd :lcd %:p:h<CR>
 noremap <silent> <Leader>sa :Unite grep:$buffers::<C-r><C-w><CR>
 NeoBundleCheck
+"
+"/ ist nun ein Keyword, um Namespace-unabhängig zu suchen"
+au   FileType clojure    set isk-=/
