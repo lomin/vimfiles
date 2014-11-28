@@ -145,6 +145,14 @@ let g:tagbar_type_clojure = {
              \ 'kinds'     : [
                 \ 'f:functions:0:0',
             \ ]}
+NeoBundle "git://github.com/tpope/vim-leiningen.git"
+NeoBundle "git://github.com/tpope/vim-projectionist.git"
+NeoBundle "git://github.com/tpope/vim-dispatch.git"
+NeoBundle "git://github.com/tpope/vim-fireplace.git"
+NeoBundle "git://github.com/guns/vim-sexp.git"
+NeoBundle "git://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
+NeoBundle "git://github.com/tpope/vim-repeat.git"
+NeoBundle "git://github.com/tpope/vim-surround.git"
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
