@@ -177,10 +177,9 @@ NeoBundle "git://github.com/tpope/vim-rake.git"
 NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
 NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
 NeoBundle "git://github.com/vim-scripts/bufkill.vim"
-NeoBundle "git://github.com/rizzatti/funcoo.vim"
-NeoBundle "git://github.com/rizzatti/dash.vim"
 NeoBundle "git://github.com/wting/rust.vim.git"
 NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
+NeoBundle "git://github.com/tpope/vim-eunuch.git"
   au BufNewFile,BufRead *.coffee set filetype=coffee
 
 call neobundle#end()
