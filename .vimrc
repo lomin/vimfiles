@@ -123,18 +123,10 @@ map <leader>b <leader>mb
 
 NeoBundle 'git://github.com/ervandew/supertab.git'
 
-" Snipmate
-" http://www.vim.org/scripts/script.php?script_id=2540
-autocmd FileType python set ft=python.django
-autocmd FileType html set ft=htmldjango.html
-
 " apt-get install exuberant-ctags
 NeoBundle 'git://github.com/majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
-NeoBundle "git://github.com/vim-scripts/VimClojure.git"
-let vimclojure#HighlightBuiltins=1
-let vimclojure#ParenRainbow=1
 au BufNewFile,BufRead *.clj set filetype=clojure
 au BufNewFile,BufRead *.cljs set filetype=clojure
 au BufNewFile,BufRead *.hy set filetype=clojure
@@ -145,7 +137,7 @@ let g:tagbar_type_clojure = {
              \ 'kinds'     : [
                 \ 'f:functions:0:0',
             \ ]}
-NeoBundle "git://github.com/tpope/vim-leiningen.git"
+NeoBundle "git://github.com/tpope/vim-salve.git"
 NeoBundle "git://github.com/tpope/vim-projectionist.git"
 NeoBundle "git://github.com/tpope/vim-dispatch.git"
 NeoBundle "git://github.com/tpope/vim-fireplace.git"
@@ -153,6 +145,13 @@ NeoBundle "git://github.com/guns/vim-sexp.git"
 NeoBundle "git://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
 NeoBundle "git://github.com/tpope/vim-repeat.git"
 NeoBundle "git://github.com/tpope/vim-surround.git"
+NeoBundle "git://github.com/tpope/vim-jdaddy.git"
+NeoBundle "git://github.com/tpope/vim-capslock.git"
+NeoBundle "git://github.com/kien/rainbow_parentheses.vim.git"
+NeoBundle "git://github.com/guns/vim-clojure-static.git"
+NeoBundle "git://github.com/guns/vim-clojure-highlight.git"
+
+
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
@@ -161,26 +160,16 @@ NeoBundle "git://github.com/tomtom/tcomment_vim.git"
 
 " ZoomWin to fullscreen a particular buffer without losing others
 NeoBundle "git://github.com/vim-scripts/ZoomWin.git"
-  map <leader>z :ZoomWin<CR>
-
-NeoBundle "git://github.com/tpope/vim-rails.git"
-  map <leader>rc :Rcontroller<Space>
-  map <leader>rv :Rview<Space>
-  map <leader>rm :Rmodel<Space>
-  map <leader>rh :Rhelper<Space>
-  map <leader>rj :Rjavascript<Space>
-  map <leader>rs :Rstylesheet<Space>
-  map <leader>ri :Rintegration<Space>
-
-NeoBundle "git://github.com/tpope/vim-rake.git"
+map <leader>z :ZoomWin<CR>
 
 NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
 NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
 NeoBundle "git://github.com/vim-scripts/bufkill.vim"
-NeoBundle "git://github.com/wting/rust.vim.git"
-NeoBundle "git://github.com/kchmck/vim-coffee-script.git"
 NeoBundle "git://github.com/tpope/vim-eunuch.git"
-  au BufNewFile,BufRead *.coffee set filetype=coffee
+NeoBundle "git://github.com/rking/ag.vim.git"
+NeoBundle "git://github.com/bling/vim-airline.git"
+set laststatus=2
+NeoBundle "git://github.com/Shougo/vimshell.vim.git"
 
 call neobundle#end()
 
@@ -219,8 +208,13 @@ set ruler
 au Filetype python setl et ts=4 sw=4
 
 nnoremap <leader>cd :lcd %:p:h<CR>
+nnoremap <leader>sh :VimShellPop<CR>
 noremap <silent> <Leader>sa :Unite grep:$buffers::<C-r><C-w><CR>
 NeoBundleCheck
 "
 "/ ist nun ein Keyword, um Namespace-unabhängig zu suchen"
 au   FileType clojure    set isk-=/
+au VimEnter * RainbowParenthesesToggle
+au Syntax clojure RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadSquare
+au Syntax clojure RainbowParenthesesLoadBraces
