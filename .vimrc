@@ -20,8 +20,8 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
-NeoBundleFetch 'git://github.com/Shougo/neobundle.vim'
-NeoBundle 'git://github.com/Shougo/vimproc', {
+NeoBundleFetch 'https://github.com/Shougo/neobundle.vim'
+NeoBundle 'https://github.com/Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
       \     'cygwin' : 'make -f make_cygwin.mak',
@@ -30,8 +30,8 @@ NeoBundle 'git://github.com/Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'git://github.com/Shougo/unite.vim'
-NeoBundle 'git://github.com/Shougo/vimfiler.vim'
+NeoBundle 'https://github.com/Shougo/unite.vim'
+NeoBundle 'https://github.com/Shougo/vimfiler.vim'
 if executable('ag')
 	  " Use ag in unite grep source.
 	  let g:unite_source_grep_command = 'ag'
@@ -115,16 +115,16 @@ nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 let python_highlight_all = 1
 autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
 
-NeoBundle 'git://github.com/Lokaltog/vim-easymotion'
+NeoBundle 'https://github.com/Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<leader>m'
 map <leader>w <leader>mw
 map <leader>e <leader>me
 map <leader>b <leader>mb
 
-NeoBundle 'git://github.com/ervandew/supertab.git'
+NeoBundle 'https://github.com/ervandew/supertab.git'
 
 " apt-get install exuberant-ctags
-NeoBundle 'git://github.com/majutsushi/tagbar'
+NeoBundle 'https://github.com/majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
 au BufNewFile,BufRead *.clj set filetype=clojure
@@ -137,39 +137,38 @@ let g:tagbar_type_clojure = {
              \ 'kinds'     : [
                 \ 'f:functions:0:0',
             \ ]}
-NeoBundle "git://github.com/tpope/vim-salve.git"
-NeoBundle "git://github.com/tpope/vim-projectionist.git"
-NeoBundle "git://github.com/tpope/vim-dispatch.git"
-NeoBundle "git://github.com/tpope/vim-fireplace.git"
-NeoBundle "git://github.com/guns/vim-sexp.git"
-NeoBundle "git://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
-NeoBundle "git://github.com/tpope/vim-repeat.git"
-NeoBundle "git://github.com/tpope/vim-surround.git"
-NeoBundle "git://github.com/tpope/vim-jdaddy.git"
-NeoBundle "git://github.com/tpope/vim-capslock.git"
-NeoBundle "git://github.com/kien/rainbow_parentheses.vim.git"
-NeoBundle "git://github.com/guns/vim-clojure-static.git"
-NeoBundle "git://github.com/guns/vim-clojure-highlight.git"
+NeoBundle "https://github.com/tpope/vim-salve.git"
+NeoBundle "https://github.com/tpope/vim-projectionist.git"
+NeoBundle "https://github.com/tpope/vim-dispatch.git"
+NeoBundle "https://github.com/tpope/vim-fireplace.git"
+NeoBundle "https://github.com/guns/vim-sexp.git"
+NeoBundle "https://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
+NeoBundle "https://github.com/tpope/vim-repeat.git"
+NeoBundle "https://github.com/tpope/vim-surround.git"
+NeoBundle "https://github.com/tpope/vim-jdaddy.git"
+NeoBundle "https://github.com/tpope/vim-capslock.git"
+NeoBundle "https://github.com/kien/rainbow_parentheses.vim.git"
+NeoBundle "https://github.com/guns/vim-clojure-static.git"
 
 
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
 
-NeoBundle "git://github.com/tomtom/tcomment_vim.git"
+NeoBundle "https://github.com/tomtom/tcomment_vim.git"
 
 " ZoomWin to fullscreen a particular buffer without losing others
-NeoBundle "git://github.com/vim-scripts/ZoomWin.git"
+NeoBundle "https://github.com/vim-scripts/ZoomWin.git"
 map <leader>z :ZoomWin<CR>
 
-NeoBundle "git://github.com/vim-scripts/Color-Sampler-Pack.git"
-NeoBundle "git://github.com/altercation/vim-colors-solarized.git"
-NeoBundle "git://github.com/vim-scripts/bufkill.vim"
-NeoBundle "git://github.com/tpope/vim-eunuch.git"
-NeoBundle "git://github.com/rking/ag.vim.git"
-NeoBundle "git://github.com/bling/vim-airline.git"
+NeoBundle "https://github.com/vim-scripts/Color-Sampler-Pack.git"
+NeoBundle "https://github.com/altercation/vim-colors-solarized.git"
+NeoBundle "https://github.com/vim-scripts/bufkill.vim"
+NeoBundle "https://github.com/tpope/vim-eunuch.git"
+NeoBundle "https://github.com/rking/ag.vim.git"
+NeoBundle "https://github.com/bling/vim-airline.git"
 set laststatus=2
-NeoBundle "git://github.com/Shougo/vimshell.vim.git"
+NeoBundle "https://github.com/Shougo/vimshell.vim.git"
 
 call neobundle#end()
 
