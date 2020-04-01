@@ -2,56 +2,16 @@
 " https://github.com/sanitz
 " https://github.com/gmarik
 " https://github.com/bostonaholic
-" https://github.com/Shougo
 
 set nocompatible
 
 let mapleader = ','
-let maplocalleader = '\'
+let maplocalleader = '´'
 
 
 if has('vim_starting')
  set nocompatible               " Be iMproved
-
- " Required:
- set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'https://github.com/Shougo/neobundle.vim'
-NeoBundle 'https://github.com/Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'https://github.com/Shougo/unite.vim'
-NeoBundle 'https://github.com/Shougo/vimfiler.vim'
-if executable('ag')
-	  " Use ag in unite grep source.
-	  let g:unite_source_grep_command = 'ag'
-	  let g:unite_source_grep_default_opts =
-	  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-	  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-	  let g:unite_source_grep_recursive_opt = ''
-	elseif executable('ack-grep')
-	  " Use ack in unite grep source.
-	  let g:unite_source_grep_command = 'ack-grep'
-	  let g:unite_source_grep_default_opts =
-	  \ '--no-heading --no-color -a -H'
-	  let g:unite_source_grep_recursive_opt = ''
-	endif
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_ignore_pattern = '\%(.pyc\)$\|^\%(.git\|.DS_Store\)$'
-nnoremap <leader>t :VimFiler<CR>
-nnoremap <leader>a :Unite grep:.<CR>
-nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
-nnoremap <leader>ls :Unite -quick-match buffer<CR>
 
 filetype off
 
@@ -105,7 +65,7 @@ nnoremap <silent> <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:
 cmap w!! w !sudo tee % >/dev/null
 
 " Um Leerzeichen usw. anzuzeigen
-nnoremap <leader>f :set list!<CR>
+nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 nnoremap <silent> <leader>v :vsplit<CR><C-W>l
@@ -115,16 +75,40 @@ nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
 let python_highlight_all = 1
 autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
 
-NeoBundle 'https://github.com/Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<leader>m'
-map <leader>w <leader>mw
-map <leader>e <leader>me
-map <leader>b <leader>mb
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-NeoBundle 'https://github.com/ervandew/supertab.git'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+map <leader>t :NERDTreeToggle<CR>
+
+Plug 'https://github.com/Lokaltog/vim-easymotion'
+nmap <leader>f <Plug>(easymotion-s)(
+nmap <leader><leader>( <Plug>(easymotion-s)(
+nmap <leader>F <Plug>(easymotion-s))
+nmap <leader><leader>) <Plug>(easymotion-s))
+nmap <leader><leader>[ <Plug>(easymotion-s)[
+nmap <leader><leader>] <Plug>(easymotion-s)]
+
+nmap ˆ  <Plug>(sexp_emit_head_element)
+nmap º  <Plug>(sexp_emit_tail_element)
+nmap ı  <Plug>(sexp_capture_prev_element)
+nmap ∆  <Plug>(sexp_capture_next_element)
+
+
+Plug 'https://github.com/ervandew/supertab.git'
 
 " apt-get install exuberant-ctags
-NeoBundle 'https://github.com/majutsushi/tagbar'
+Plug 'https://github.com/majutsushi/tagbar'
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 
 au BufNewFile,BufRead *.clj set filetype=clojure
@@ -137,40 +121,50 @@ let g:tagbar_type_clojure = {
              \ 'kinds'     : [
                 \ 'f:functions:0:0',
             \ ]}
-NeoBundle "https://github.com/tpope/vim-salve.git"
-NeoBundle "https://github.com/tpope/vim-projectionist.git"
-NeoBundle "https://github.com/tpope/vim-dispatch.git"
-NeoBundle "https://github.com/tpope/vim-fireplace.git"
-NeoBundle "https://github.com/guns/vim-sexp.git"
-NeoBundle "https://github.com/tpope/vim-sexp-mappings-for-regular-people.git"
-NeoBundle "https://github.com/tpope/vim-repeat.git"
-NeoBundle "https://github.com/tpope/vim-surround.git"
-NeoBundle "https://github.com/tpope/vim-jdaddy.git"
-NeoBundle "https://github.com/tpope/vim-capslock.git"
-NeoBundle "https://github.com/kien/rainbow_parentheses.vim.git"
-NeoBundle "https://github.com/guns/vim-clojure-static.git"
+Plug 'https://github.com/tpope/vim-salve.git'
+Plug 'https://github.com/tpope/vim-projectionist.git'
+Plug 'https://github.com/tpope/vim-dispatch.git'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'https://github.com/guns/vim-sexp.git'
+Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
+Plug 'https://github.com/tpope/vim-repeat.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-jdaddy.git'
+Plug 'https://github.com/tpope/vim-capslock.git'
+Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
+Plug 'https://github.com/guns/vim-clojure-static.git', { 'for': 'clojure' }
 
 
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
 
-NeoBundle "https://github.com/tomtom/tcomment_vim.git"
+Plug 'https://github.com/tomtom/tcomment_vim.git'
 
-" ZoomWin to fullscreen a particular buffer without losing others
-NeoBundle "https://github.com/vim-scripts/ZoomWin.git"
-map <leader>z :ZoomWin<CR>
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+map <leader>z :ZoomToggle<CR>
 
-NeoBundle "https://github.com/vim-scripts/Color-Sampler-Pack.git"
-NeoBundle "https://github.com/altercation/vim-colors-solarized.git"
-NeoBundle "https://github.com/vim-scripts/bufkill.vim"
-NeoBundle "https://github.com/tpope/vim-eunuch.git"
-NeoBundle "https://github.com/rking/ag.vim.git"
-NeoBundle "https://github.com/bling/vim-airline.git"
+Plug 'https://github.com/vim-scripts/Color-Sampler-Pack.git'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/vim-scripts/bufkill.vim'
+Plug 'https://github.com/tpope/vim-eunuch.git'
+Plug 'https://github.com/rking/ag.vim.git'
+Plug 'https://github.com/bling/vim-airline.git'
 set laststatus=2
-NeoBundle "https://github.com/Shougo/vimshell.vim.git"
 
-call neobundle#end()
+call plug#end()
 
 syntax on
 
@@ -188,18 +182,21 @@ noremap  <Right> ""
 nnoremap <Left> <C-B>
 nnoremap <Right> <C-F>
 
-map <leader><Tab> =i(=i[
-map <leader>( =i( 
-map <leader>[ =i[ 
+map <leader>bd ""
 
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+map <leader><Tab> =i(=i[
+" map <leader>( =i( 
+" map <leader>[ =i[ 
+
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
 
 noremap <leader>= <c-w>=
 
 inoremap jk <ESC>
+"map <leader>yp %yaeP
 
 set clipboard=unnamed
 set ruler
@@ -207,13 +204,12 @@ set ruler
 au Filetype python setl et ts=4 sw=4
 
 nnoremap <leader>cd :lcd %:p:h<CR>
-nnoremap <leader>sh :VimShellPop<CR>
-noremap <silent> <Leader>sa :Unite grep:$buffers::<C-r><C-w><CR>
-NeoBundleCheck
 "
 "/ ist nun ein Keyword, um Namespace-unabhängig zu suchen"
-au   FileType clojure    set isk-=/
+au FileType clojure    set isk-=/
 au VimEnter * RainbowParenthesesToggle
 au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
+
+autocmd VimEnter * noremap <c-l> <c-w>l
