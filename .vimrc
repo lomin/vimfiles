@@ -101,7 +101,7 @@ nmap º  <Plug>(sexp_emit_tail_element)
 nmap ı  <Plug>(sexp_capture_prev_element)
 nmap ∆  <Plug>(sexp_capture_next_element)
 
-
+" Supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs 
 Plug 'https://github.com/ervandew/supertab.git'
 
 " apt-get install exuberant-ctags
@@ -118,24 +118,27 @@ let g:tagbar_type_clojure = {
              \ 'kinds'     : [
                 \ 'f:functions:0:0',
             \ ]}
+" Static Vim support for Leiningen, Boot, and the Clojure CLI.
 Plug 'https://github.com/tpope/vim-salve.git'
-Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/tpope/vim-dispatch.git'
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'https://github.com/guns/vim-sexp.git'
+Plug 'https://github.com/guns/vim-clojure-static.git', { 'for': 'clojure' }
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+let g:iced_enable_default_key_mappings = v:true
 Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
+" Repeat vim-surround
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-surround.git'
+" JSON manipulation and pretty printing
 Plug 'https://github.com/tpope/vim-jdaddy.git'
-Plug 'https://github.com/tpope/vim-capslock.git'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
-Plug 'https://github.com/guns/vim-clojure-static.git', { 'for': 'clojure' }
 
 
 
 " Um schnell die vimrc zu editieren
 nnoremap <silent> <leader>my :e! ~/.vimrc<cr>
-
+" gcc          :: Toggle comment for the current line
 Plug 'https://github.com/tomtom/tcomment_vim.git'
 
 " Zoom / Restore window.
@@ -156,10 +159,24 @@ map <leader>z :ZoomToggle<CR>
 Plug 'https://github.com/vim-scripts/Color-Sampler-Pack.git'
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/vim-scripts/bufkill.vim'
+" Helpers for UNIX 
+" :Rename new_name.sh
+" :Chmod +x
+" :SudoWrite
 Plug 'https://github.com/tpope/vim-eunuch.git'
-Plug 'https://github.com/rking/ag.vim.git'
+" lean & mean status/tabline for vim that's light as air
 Plug 'https://github.com/bling/vim-airline.git'
+"
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+nnoremap <C-p> :<C-u>FZF<CR>
 set laststatus=2
+
+" An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
+Plug 'dyng/ctrlsf.vim'
+nmap <C-f> <Plug>CtrlSFPrompt
+nmap <C-g> <Plug>CtrlSFPrompt<CR>
+vmap <C-g> <Plug>CtrlSFVwordExec
 
 call plug#end()
 
