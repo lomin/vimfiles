@@ -84,12 +84,9 @@ endif
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
-
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-map <leader>t :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 Plug 'https://github.com/Lokaltog/vim-easymotion'
 nmap <leader>f <Plug>(easymotion-s)(
