@@ -68,9 +68,9 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
-nnoremap <silent> <leader>v :vsplit<CR><C-W>l
-nnoremap <silent> <leader>s :split<CR><C-W>j
-nnoremap <silent> <leader>nt :tabnew<CR><C-W>l
+nnoremap <silent> <leader>v :vsplit<CR><C-w>l
+nnoremap <silent> <leader>s :split<CR><C-w>j
+nnoremap <silent> <leader>nt :tabnew<CR><C-w>l
 
 let python_highlight_all = 1
 autocmd FileType python map <F10> :w<CR>:!python "%"<CR>
@@ -179,8 +179,8 @@ command! -complete=file -nargs=1 RM :echo 'Remove: '.'<f-args>'.' '.(delete(<f-a
 
 noremap  <Left> ""
 noremap  <Right> ""
-nnoremap <Left> <C-B>
-nnoremap <Right> <C-F>
+nnoremap <Left> <C-b>
+nnoremap <Right> <C-f>
 
 map <leader>bd ""
 
