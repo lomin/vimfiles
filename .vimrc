@@ -126,6 +126,7 @@ Plug 'https://github.com/guns/vim-sexp.git'
 Plug 'https://github.com/guns/vim-clojure-static.git', { 'for': 'clojure' }
 Plug 'liquidz/vim-iced', {'for': 'clojure'}
 let g:iced_enable_default_key_mappings = v:true
+Plug 'liquidz/vim-iced-kaocha'
 Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
 " Repeat vim-surround
 Plug 'https://github.com/tpope/vim-repeat.git'
